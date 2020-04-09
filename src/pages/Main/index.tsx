@@ -65,15 +65,17 @@ const ItemsStore: TTreeItem[] = [
 ];
 
 export const Main: React.FC = () => {
-  const [hide, setHide] = useState(false);
-  const cls: string[] = [hide ? "hide" : ""];
+  const [hideChildren, setHideChildren] = useState(false);
 
   return (
     <div>
-      <button onClick={() => setHide(!hide)}>
-          {hide ? "Show" : "Hide"}
+      <button className='btn' onClick={() => setHideChildren(false)}>
+          Show
       </button>
-      <Tree className={cls.join(" ")} items={ItemsStore} />
+      <button className='btn' onClick={() => setHideChildren(true)}>
+          Hide
+      </button>
+      <Tree items={ItemsStore} hideChildren={hideChildren} />
     </div>
   );
 };

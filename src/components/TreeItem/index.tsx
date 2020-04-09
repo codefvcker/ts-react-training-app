@@ -5,7 +5,8 @@ interface ITreeItemProps {
     title: string,
     id: number,
     children: TTreeItem[],
-    renderItems: (items: TTreeItem[]) => any 
+    renderItems: (items: TTreeItem[]) => any,
+    hideChildren: boolean
 }
 
 export const TreeItem: React.FC<ITreeItemProps> = ({
@@ -13,10 +14,11 @@ export const TreeItem: React.FC<ITreeItemProps> = ({
   id,
   children,
   renderItems,
+  hideChildren
 }) => {
   const [hide, setHide] = useState(false);
 
-  const cls: string[] = ["tree-item__children", hide ? "hide" : ""];
+  const cls: string[] = ["tree-item__children", hide || hideChildren ? "hide" : ""];
 
   return (
     <li>
