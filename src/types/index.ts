@@ -3,3 +3,8 @@ export type TTreeItem = {
     id: number,
     children: TTreeItem[]
 }
+
+export type THideState = {
+    hideChildren: boolean,
+    clicked: boolean
+}

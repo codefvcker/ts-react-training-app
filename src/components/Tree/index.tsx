@@ -1,14 +1,14 @@
 import React from 'react'
-import {TTreeItem} from '../../types'
+import {TTreeItem, THideState} from '../../types'
 import { TreeItem } from '../TreeItem'
 
 interface ITreeProps {
     items: TTreeItem[],
     className?: string, 
-    hideChildren: boolean
+    hideState: THideState,
 }
 
-export const Tree: React.FC<ITreeProps> = ({ items, className, hideChildren }) => {
+export const Tree: React.FC<ITreeProps> = ({ items, className, hideState }) => {
   const renderItems = (items: TTreeItem[]) => {
     return items.map((item) => (
       <TreeItem
@@ -17,7 +17,7 @@ export const Tree: React.FC<ITreeProps> = ({ items, className, hideChildren }) =
         title={item.title}
         children={item.children}
         renderItems={renderItems}
-        hideChildren = {hideChildren}
+        hideState = {hideState}
       />
     ));
   };

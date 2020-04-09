@@ -1,12 +1,12 @@
-import React, { useState } from 'react'
-import { TTreeItem } from '../../types'
+import React, { useState, useEffect, useMemo } from 'react'
+import { TTreeItem, THideState } from '../../types'
 
 interface ITreeItemProps {
     title: string,
     id: number,
     children: TTreeItem[],
     renderItems: (items: TTreeItem[]) => any,
-    hideChildren: boolean
+    hideState: THideState,
 }
 
 export const TreeItem: React.FC<ITreeItemProps> = ({
@@ -14,11 +14,15 @@ export const TreeItem: React.FC<ITreeItemProps> = ({
   id,
   children,
   renderItems,
-  hideChildren
+  hideState,
 }) => {
   const [hide, setHide] = useState(false);
 
-  const cls: string[] = ["tree-item__children", hide || hideChildren ? "hide" : ""];
+  const cls: string[] = ["tree-item__children", hide ? "hide" : ""];
+
+  useEffect(() => {
+    setHide(hideState.hideChildren)
+  }, [hideState]);
 
   return (
     <li>

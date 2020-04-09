@@ -65,17 +65,23 @@ const ItemsStore: TTreeItem[] = [
 ];
 
 export const Main: React.FC = () => {
-  const [hideChildren, setHideChildren] = useState(false);
+
+    // clicked - стейт по которому айтем отслеживает изменения в useEffect 
+
+  const [hideState, setHideState] = useState({
+      hideChildren: false,
+      clicked: false
+  });
 
   return (
     <div>
-      <button className='btn' onClick={() => setHideChildren(false)}>
-          Show
+      <button className="btn" onClick={() => setHideState({hideChildren: false, clicked: !hideState.clicked})}>
+        Show
       </button>
-      <button className='btn' onClick={() => setHideChildren(true)}>
-          Hide
+      <button className="btn" onClick={() => setHideState({hideChildren: true, clicked: !hideState.clicked})}>
+        Hide
       </button>
-      <Tree items={ItemsStore} hideChildren={hideChildren} />
+      <Tree items={ItemsStore} hideState={hideState} />
     </div>
   );
 };
